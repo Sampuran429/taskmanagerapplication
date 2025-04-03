@@ -1,0 +1,96 @@
+# Task Management Application
+
+This project is a backend application for managing tasks and user authentication, built with Node.js and Express. It provides endpoints for registering and authenticating users using JWT as well as creating, updating, retrieving, and deleting tasks associated with each user.
+
+## Features
+
+### User Authentication
+- **User Registration:** Register new users with first name, last name, email, and password.
+- **User Login:** Authenticate users and generate JWT tokens.
+- **Profile:** Retrieve profile details of the authenticated user.
+- **User Logout:** Invalidate tokens by blacklisting them.
+
+### Task Management
+- **Create Task:** Create new tasks for an authenticated user.
+- **Retrieve Tasks:** Get all tasks belonging to the user.
+- **Get Task Details:** Retrieve a specific task by its ID.
+- **Update Task:** Update task details.
+- **Delete Task:** Remove a task from the database.
+
+## Technologies
+
+- **Node.js** (JavaScript)
+- **Express** - Web framework for Node.js.
+- **MongoDB & Mongoose** - Database and ODM.
+- **JWT (jsonwebtoken)** - Token-based authentication.
+- **bcrypt** - Password hashing.
+- **dotenv** - Environment variable management.
+- **express-validator** - Request validation.
+
+## Installation
+
+1. Clone the repository:
+    ```sh
+    git clone <repository-url>
+    ```
+
+2. Navigate to the Backend directory:
+    ```sh
+    cd Backend
+    ```
+
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
+
+4. Create a `.env` file in the Backend directory with the following content:
+    ```env
+    DB_CONNECT=mongodb://localhost:27017/task-manager
+    PORT=5000
+    JWT_SECRET=task-manager-app
+    ```
+
+## Running the Application
+
+- To start in development mode with nodemon:
+    ```sh
+    npm run dev
+    ```
+- To run in production mode:
+    ```sh
+    npm start
+    ```
+
+## API Endpoints
+
+### User Routes
+- **POST /users/register** - Register a new user.  
+  See [`user.controller.registerUser`](d:\OneDrive\Desktop\Task-Manager\Backend\controllers\user.controller.js)
+  
+- **POST /users/login** - Authenticate an existing user.  
+  See [`user.controller.loginUser`](d:\OneDrive\Desktop\Task-Manager\Backend\controllers\user.controller.js)
+  
+- **GET /users/profile** - Retrieve profile details (protected route).  
+  See [`auth.middleware.authUser`](d:\OneDrive\Desktop\Task-Manager\Backend\middlewares\auth.middleware.js) and [`user.controller.getUserProfile`](d:\OneDrive\Desktop\Task-Manager\Backend\controllers\user.controller.js)
+  
+- **GET /users/logout** - Logout a user and blacklist the token.  
+  See [`user.controller.logoutUser`](d:\OneDrive\Desktop\Task-Manager\Backend\controllers\user.controller.js)
+
+### Task Routes
+- **POST /tasks/create** - Create a new task.  
+  See [`task.controller.createTask`](d:\OneDrive\Desktop\Task-Manager\Backend\controllers\task.controller.js)
+  
+- **GET /tasks/getall** - Retrieve all tasks for the authenticated user.  
+  See [`task.controller.getTasks`](d:\OneDrive\Desktop\Task-Manager\Backend\controllers\task.controller.js)
+  
+- **GET /tasks/get-task/:id** - Retrieve a specific task by its ID.  
+  See [`task.controller.getTaskById`](d:\OneDrive\Desktop\Task-Manager\Backend\controllers\task.controller.js)
+  
+- **PUT /tasks/update-task/:id** - Update an existing task.  
+  See [`task.controller.updateTask`](d:\OneDrive\Desktop\Task-Manager\Backend\controllers\task.controller.js)
+  
+- **DELETE /tasks/delete-task/:id** - Delete a task.  
+  See [`task.controller.deleteTask`](d:\OneDrive\Desktop\Task-Manager\Backend\controllers\task.controller.js)
+
+## Project Structure
