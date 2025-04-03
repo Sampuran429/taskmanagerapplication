@@ -17,13 +17,27 @@ connectToDb();
 // CORS configuration to allow cross-origin requests from your frontend (e.g., React)
 app.use(cors({
     origin: [
-        "http://localhost:5173", // Local development frontend
-        "https://taskmanagerapp-frontend-mvkc4jzgu-sampuran-udeshis-projects.vercel.app/", // Vercel Production URL
+        "http://localhost:5173", 
+        "https://taskmanagerapp-frontend-mvkc4jzgu-sampuran-udeshis-projects.vercel.app"
     ],
-    credentials: true, // Allow cookies to be sent with requests
-    methods: ["GET", "POST", "PUT", "DELETE"], 
-    allowedHeaders: ["Content-Type", "Authorization"], 
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+// Handle Preflight Requests (Important for CORS)
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200);
+    }
+
+    next();
+});
 
 // Middleware for parsing JSON and URL encoded data
 app.use(express.json());
