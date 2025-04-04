@@ -18,7 +18,7 @@ connectToDb();
 app.use(cors({
     origin: [
         "http://localhost:5173", 
-        "https://taskmanagerapp-frontend-m3at2dpuf-sampuran-udeshis-projects.vercel.app"
+        "https://taskmanagerapp-frontend.vercel.app"
     ],
     
     credentials: true,
